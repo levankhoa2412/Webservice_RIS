@@ -115,6 +115,7 @@ public class JsonWebService : System.Web.Services.WebService
         return jsonString;
     }
     //E: DANG NHAP
+
     [WebMethod]
     //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string kiemtraquyen(string dvtt, string u_en, string p_en, int role)
@@ -123,15 +124,14 @@ public class JsonWebService : System.Web.Services.WebService
         int kiemtra = Convert.ToInt32(kiemtradonvi.Rows[0]["kt"].ToString());
         List<Cls_TT> result = new List<Cls_TT>();
 
-        if (role == 1)
+        if (role == 1 && kiemtra > 0)
         {
-            var rs = new Cls_TT();
             if (u_en == dv.u_en && p_en == dv.p_en)
             {
-                rs.TT = "ADMINSERVICE";
+                return "[{" + "\"TT\"" + ":" + "\"ROLE\"" + "}]"; ;
             }else
             {
-                rs.TT = "NOT_ADMINSERVICE";
+                return "[{"+"\"TT\""+":"+ "\"NOTROLE\"" + "}]";
             }
             
         }
@@ -160,7 +160,6 @@ public class JsonWebService : System.Web.Services.WebService
                 }
             }
         }
-        
         //yourobject is your actula object (may be collection) you want to serialize to json
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(result.GetType());
         //create a memory stream
@@ -171,8 +170,8 @@ public class JsonWebService : System.Web.Services.WebService
         string jsonString = Encoding.UTF8.GetString(ms.ToArray());
         //close the memory stream
         ms.Close();
-
         return jsonString;
+
     }
 
     public List<dskhoa> dskhoa_obj(DataTable dtInput)
@@ -744,6 +743,57 @@ public class JsonWebService : System.Web.Services.WebService
 
                 DataTable bc = new DataTable();
                 bc = auto.update_noitru_cdha_ct(dvtt, sophieu, madv, ketqua, tenpdb, ip_server, ports, user, matkhau);
+                int i = bc.Rows.Count;
+                result = trangthai_result(bc);
+            }
+        }
+        //yourobject is your actula object (may be collection) you want to serialize to json
+        DataContractJsonSerializer serializer = new DataContractJsonSerializer(result.GetType());
+        //create a memory stream
+        MemoryStream ms = new MemoryStream();
+        //serialize the object to memory stream
+        serializer.WriteObject(ms, result);
+        //convert the serizlized object to string
+        string jsonString = Encoding.UTF8.GetString(ms.ToArray());
+        //close the memory stream
+        ms.Close();
+
+        return jsonString;
+    }
+
+    // II.4.3.3.5.  Cập nhật kết quả chẩn đoán hình ảnh ca chụp phiếu nội/ ngoại trú (service update_ketqua_cdha_ct)
+    [WebMethod]
+    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string update_ketqua_cdha_ct(string dvtt, string sophieu, string madv, string ketqua, string ketluan, string loidan, int noitru, string u_en, string p_en)
+    {
+        List<Cls_TT> result = new List<Cls_TT>();
+
+        DataTable kiemtradonvi = auto_my.finddvtt_ris(dvtt);
+
+        int kiemtra = Convert.ToInt32(kiemtradonvi.Rows[0]["kt"].ToString());
+
+        if (u_en == dv.u_en && p_en == dv.p_en && kiemtra > 0)
+        {
+
+            //dataTable1.Merge(dataTable2);
+            DataTable dtb_canlam = new DataTable();
+            dtb_canlam = auto_my.findpdb(kiemtradonvi.Rows[0]["PDB"].ToString());
+
+            //for (int i = 0; i < dtb_all.Rows.Count; i++)
+            if (dtb_canlam.Rows.Count > 0)
+            {
+
+                String tenpdb, user, matkhau, ip_server, hoatdong, tencum, ports;
+                tenpdb = dtb_canlam.Rows[0]["tenpdb"].ToString();
+                user = dtb_canlam.Rows[0]["user"].ToString();
+                matkhau = dtb_canlam.Rows[0]["matkhau"].ToString();
+                ip_server = dtb_canlam.Rows[0]["ip_server"].ToString();
+                hoatdong = dtb_canlam.Rows[0]["hoatdong"].ToString();
+                tencum = dtb_canlam.Rows[0]["tencum"].ToString();
+                ports = dtb_canlam.Rows[0]["cong"].ToString();
+
+                DataTable bc = new DataTable();
+                bc = auto.update_ketqua_cdha_ct(dvtt, sophieu, madv, ketqua, ketluan, loidan, noitru, tenpdb, ip_server, ports, user, matkhau);
                 int i = bc.Rows.Count;
                 result = trangthai_result(bc);
             }
