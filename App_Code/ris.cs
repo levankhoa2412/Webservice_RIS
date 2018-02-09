@@ -811,4 +811,109 @@ public class JsonWebService : System.Web.Services.WebService
 
         return jsonString;
     }
+
+    // II.4.3.3.8.  Cập nhật hình ảnh ca chụp (service update_hinhanh_cachup)
+    [WebMethod]
+    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string update_hinhanh_cachup(string dvtt, string sophieu, string madv, string[] hinhanh, int noitru, string u_en, string p_en)
+    {
+        List<Cls_TT> result = new List<Cls_TT>();
+
+        DataTable kiemtradonvi = auto_my.finddvtt_ris(dvtt);
+
+        int kiemtra = Convert.ToInt32(kiemtradonvi.Rows[0]["kt"].ToString());
+
+        if (u_en == dv.u_en && p_en == dv.p_en && kiemtra > 0)
+        {
+
+            //dataTable1.Merge(dataTable2);
+            DataTable dtb_canlam = new DataTable();
+            dtb_canlam = auto_my.findpdb(kiemtradonvi.Rows[0]["PDB"].ToString());
+
+            //for (int i = 0; i < dtb_all.Rows.Count; i++)
+            if (dtb_canlam.Rows.Count > 0)
+            {
+
+                String tenpdb, user, matkhau, ip_server, hoatdong, tencum, ports;
+                tenpdb = dtb_canlam.Rows[0]["tenpdb"].ToString();
+                user = dtb_canlam.Rows[0]["user"].ToString();
+                matkhau = dtb_canlam.Rows[0]["matkhau"].ToString();
+                ip_server = dtb_canlam.Rows[0]["ip_server"].ToString();
+                hoatdong = dtb_canlam.Rows[0]["hoatdong"].ToString();
+                tencum = dtb_canlam.Rows[0]["tencum"].ToString();
+                ports = dtb_canlam.Rows[0]["cong"].ToString();
+
+                DataTable bc = new DataTable();
+                for (int k=0; k<hinhanh.Length; k++)
+                {
+                    bc = auto.update_hinhanh_cachup(dvtt, sophieu, madv, hinhanh[k], noitru, tenpdb, ip_server, ports, user, matkhau);
+                }
+                int i = bc.Rows.Count;
+                result = trangthai_result(bc);
+            }
+        }
+        //yourobject is your actula object (may be collection) you want to serialize to json
+        DataContractJsonSerializer serializer = new DataContractJsonSerializer(result.GetType());
+        //create a memory stream
+        MemoryStream ms = new MemoryStream();
+        //serialize the object to memory stream
+        serializer.WriteObject(ms, result);
+        //convert the serizlized object to string
+        string jsonString = Encoding.UTF8.GetString(ms.ToArray());
+        //close the memory stream
+        ms.Close();
+
+        return jsonString;
+    }
+
+    // II.4.3.3.6.  Cập nhật trạng thái/ từ chối tiếp nhận phiếu chỉ định (service update_trangthai_phieu)
+    [WebMethod]
+    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string update_trangthai_phieu(string dvtt, string sophieu, string trangthai, string lydo, int noitru, string u_en, string p_en)
+    {
+        List<Cls_TT> result = new List<Cls_TT>();
+
+        DataTable kiemtradonvi = auto_my.finddvtt_ris(dvtt);
+
+        int kiemtra = Convert.ToInt32(kiemtradonvi.Rows[0]["kt"].ToString());
+
+        if (u_en == dv.u_en && p_en == dv.p_en && kiemtra > 0)
+        {
+
+            //dataTable1.Merge(dataTable2);
+            DataTable dtb_canlam = new DataTable();
+            dtb_canlam = auto_my.findpdb(kiemtradonvi.Rows[0]["PDB"].ToString());
+
+            //for (int i = 0; i < dtb_all.Rows.Count; i++)
+            if (dtb_canlam.Rows.Count > 0)
+            {
+
+                String tenpdb, user, matkhau, ip_server, hoatdong, tencum, ports;
+                tenpdb = dtb_canlam.Rows[0]["tenpdb"].ToString();
+                user = dtb_canlam.Rows[0]["user"].ToString();
+                matkhau = dtb_canlam.Rows[0]["matkhau"].ToString();
+                ip_server = dtb_canlam.Rows[0]["ip_server"].ToString();
+                hoatdong = dtb_canlam.Rows[0]["hoatdong"].ToString();
+                tencum = dtb_canlam.Rows[0]["tencum"].ToString();
+                ports = dtb_canlam.Rows[0]["cong"].ToString();
+
+                DataTable bc = new DataTable();
+                bc = auto.update_trangthai_phieu(dvtt, sophieu, trangthai, lydo, noitru, tenpdb, ip_server, ports, user, matkhau);
+                int i = bc.Rows.Count;
+                result = trangthai_result(bc);
+            }
+        }
+        //yourobject is your actula object (may be collection) you want to serialize to json
+        DataContractJsonSerializer serializer = new DataContractJsonSerializer(result.GetType());
+        //create a memory stream
+        MemoryStream ms = new MemoryStream();
+        //serialize the object to memory stream
+        serializer.WriteObject(ms, result);
+        //convert the serizlized object to string
+        string jsonString = Encoding.UTF8.GetString(ms.ToArray());
+        //close the memory stream
+        ms.Close();
+
+        return jsonString;
+    }
 }

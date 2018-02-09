@@ -736,5 +736,163 @@ namespace WebService_syn.BUS
                 throw;
             }
         }
+
+        public DataTable update_hinhanh_cachup(string dvtt, string sophieu, string madv, string hinhanh, int noitru, string pdb, string ip, string port, string userid, string pass)
+        {
+            try
+            {
+
+                string chuoi = "";
+                chuoi = oradb1 + ip + oradb1_1 + port + oradb1_2 + pdb + oradb2 + userid + oradb2_1 + pass + oradb3;
+
+                OracleConnection connpdbs = new OracleConnection(chuoi);
+
+                connpdbs.Open();
+                OracleCommand cmd = connpdbs.CreateCommand();
+
+                cmd.CommandText = "HIS_MANAGER.RIS_UPDATE_HINHANH_CACHUP";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //// outParam Error Code
+                OracleParameter p_sophieu = new OracleParameter();
+                p_sophieu.OracleDbType = OracleDbType.Varchar2;
+                p_sophieu.Direction = ParameterDirection.Input;
+                p_sophieu.Value = sophieu;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_sophieu);
+
+                //// outParam Error Code
+                OracleParameter p_dvtt = new OracleParameter();
+                p_dvtt.OracleDbType = OracleDbType.Varchar2;
+                p_dvtt.Direction = ParameterDirection.Input;
+                p_dvtt.Value = dvtt;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_dvtt);
+
+                //// outParam Error Code
+                OracleParameter p_madv = new OracleParameter();
+                p_madv.OracleDbType = OracleDbType.Varchar2;
+                p_madv.Direction = ParameterDirection.Input;
+                p_madv.Value = madv;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_madv);
+
+                //// outParam Error Code
+                OracleParameter p_hinhanh = new OracleParameter();
+                p_hinhanh.OracleDbType = OracleDbType.Clob;
+                p_hinhanh.Direction = ParameterDirection.Input;
+                p_hinhanh.Value = hinhanh;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_hinhanh);
+                
+                //// outParam Error Code
+                OracleParameter p_noitru = new OracleParameter();
+                p_noitru.OracleDbType = OracleDbType.Varchar2;
+                p_noitru.Direction = ParameterDirection.Input;
+                p_noitru.Value = noitru;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_noitru);
+
+                OracleParameter cur = new OracleParameter();
+                cur.ParameterName = "RefCursor";
+                cur.OracleDbType = OracleDbType.RefCursor;
+                cur.Direction = ParameterDirection.Output;
+                //param6.IsNullable = false;
+                cmd.Parameters.Add(cur);
+
+                DataSet ds = new DataSet("RIS_UPDATE_HINHANH_CACHUP");
+
+                new OracleDataAdapter(cmd).Fill(ds);
+
+                connpdbs.Close();
+                connpdbs.Dispose();
+                return ds.Tables[0];
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public DataTable update_trangthai_phieu(string dvtt, string sophieu, string trangthai, string lydo, int noitru, string pdb, string ip, string port, string userid, string pass)
+        {
+            try
+            {
+
+                string chuoi = "";
+                chuoi = oradb1 + ip + oradb1_1 + port + oradb1_2 + pdb + oradb2 + userid + oradb2_1 + pass + oradb3;
+
+                OracleConnection connpdbs = new OracleConnection(chuoi);
+
+                connpdbs.Open();
+                OracleCommand cmd = connpdbs.CreateCommand();
+
+                cmd.CommandText = "HIS_MANAGER.RIS_UPDATE_TRANGTHAI_PHIEU";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //// outParam Error Code
+                OracleParameter p_sophieu = new OracleParameter();
+                p_sophieu.OracleDbType = OracleDbType.Varchar2;
+                p_sophieu.Direction = ParameterDirection.Input;
+                p_sophieu.Value = sophieu;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_sophieu);
+
+                //// outParam Error Code
+                OracleParameter p_dvtt = new OracleParameter();
+                p_dvtt.OracleDbType = OracleDbType.Varchar2;
+                p_dvtt.Direction = ParameterDirection.Input;
+                p_dvtt.Value = dvtt;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_dvtt);
+
+                //// outParam Error Code
+                OracleParameter p_trangthai = new OracleParameter();
+                p_trangthai.OracleDbType = OracleDbType.Varchar2;
+                p_trangthai.Direction = ParameterDirection.Input;
+                p_trangthai.Value = trangthai;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_trangthai);
+
+                //// outParam Error Code
+                OracleParameter p_lydo = new OracleParameter();
+                p_lydo.OracleDbType = OracleDbType.Varchar2;
+                p_lydo.Direction = ParameterDirection.Input;
+                p_lydo.Value = lydo;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_lydo);
+
+                //// outParam Error Code
+                OracleParameter p_noitru = new OracleParameter();
+                p_noitru.OracleDbType = OracleDbType.Varchar2;
+                p_noitru.Direction = ParameterDirection.Input;
+                p_noitru.Value = noitru;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_noitru);
+
+                OracleParameter cur = new OracleParameter();
+                cur.ParameterName = "RefCursor";
+                cur.OracleDbType = OracleDbType.RefCursor;
+                cur.Direction = ParameterDirection.Output;
+                //param6.IsNullable = false;
+                cmd.Parameters.Add(cur);
+
+                DataSet ds = new DataSet("RIS_UPDATE_TRANGTHAI_PHIEU");
+
+                new OracleDataAdapter(cmd).Fill(ds);
+
+                connpdbs.Close();
+                connpdbs.Dispose();
+                return ds.Tables[0];
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
