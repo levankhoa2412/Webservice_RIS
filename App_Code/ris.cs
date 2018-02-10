@@ -866,10 +866,10 @@ public class JsonWebService : System.Web.Services.WebService
         return jsonString;
     }
 
-    // II.4.3.3.6.  Cập nhật trạng thái/ từ chối tiếp nhận phiếu chỉ định (service update_trangthai_phieu)
+    // II.4.3.3.7.  Cập nhật trạng thái ca chụp (service update_trangthai_cachup)
     [WebMethod]
     //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string update_trangthai_phieu(string dvtt, string sophieu, string trangthai, string lydo, int noitru, string u_en, string p_en)
+    public string update_trangthai_cachup(string dvtt, string sophieu, string madv, string trangthai, string thoigian, int noitru, string u_en, string p_en)
     {
         List<Cls_TT> result = new List<Cls_TT>();
 
@@ -898,7 +898,7 @@ public class JsonWebService : System.Web.Services.WebService
                 ports = dtb_canlam.Rows[0]["cong"].ToString();
 
                 DataTable bc = new DataTable();
-                bc = auto.update_trangthai_phieu(dvtt, sophieu, trangthai, lydo, noitru, tenpdb, ip_server, ports, user, matkhau);
+                bc = auto.update_trangthai_cachup(dvtt, sophieu, madv, trangthai, thoigian, noitru, tenpdb, ip_server, ports, user, matkhau);
                 int i = bc.Rows.Count;
                 result = trangthai_result(bc);
             }

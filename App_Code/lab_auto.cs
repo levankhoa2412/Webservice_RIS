@@ -815,8 +815,8 @@ namespace WebService_syn.BUS
                 throw;
             }
         }
-
-        public DataTable update_trangthai_phieu(string dvtt, string sophieu, string trangthai, string lydo, int noitru, string pdb, string ip, string port, string userid, string pass)
+        
+        public DataTable update_trangthai_cachup(string dvtt, string sophieu, string madv, string trangthai, string thoigian, int noitru, string pdb, string ip, string port, string userid, string pass)
         {
             try
             {
@@ -829,7 +829,7 @@ namespace WebService_syn.BUS
                 connpdbs.Open();
                 OracleCommand cmd = connpdbs.CreateCommand();
 
-                cmd.CommandText = "HIS_MANAGER.RIS_UPDATE_TRANGTHAI_PHIEU";
+                cmd.CommandText = "HIS_MANAGER.RIS_UPDATE_TRANGTHAI_CACHUP";
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 //// outParam Error Code
@@ -849,6 +849,14 @@ namespace WebService_syn.BUS
                 cmd.Parameters.Add(p_dvtt);
 
                 //// outParam Error Code
+                OracleParameter p_madv = new OracleParameter();
+                p_madv.OracleDbType = OracleDbType.Varchar2;
+                p_madv.Direction = ParameterDirection.Input;
+                p_madv.Value = madv;
+                //param5.IsNullable = true;
+                cmd.Parameters.Add(p_madv);
+
+                //// outParam Error Code
                 OracleParameter p_trangthai = new OracleParameter();
                 p_trangthai.OracleDbType = OracleDbType.Varchar2;
                 p_trangthai.Direction = ParameterDirection.Input;
@@ -857,12 +865,12 @@ namespace WebService_syn.BUS
                 cmd.Parameters.Add(p_trangthai);
 
                 //// outParam Error Code
-                OracleParameter p_lydo = new OracleParameter();
-                p_lydo.OracleDbType = OracleDbType.Varchar2;
-                p_lydo.Direction = ParameterDirection.Input;
-                p_lydo.Value = lydo;
+                OracleParameter p_thoigian = new OracleParameter();
+                p_thoigian.OracleDbType = OracleDbType.Varchar2;
+                p_thoigian.Direction = ParameterDirection.Input;
+                p_thoigian.Value = thoigian;
                 //param5.IsNullable = true;
-                cmd.Parameters.Add(p_lydo);
+                cmd.Parameters.Add(p_thoigian);
 
                 //// outParam Error Code
                 OracleParameter p_noitru = new OracleParameter();
@@ -879,7 +887,7 @@ namespace WebService_syn.BUS
                 //param6.IsNullable = false;
                 cmd.Parameters.Add(cur);
 
-                DataSet ds = new DataSet("RIS_UPDATE_TRANGTHAI_PHIEU");
+                DataSet ds = new DataSet("RIS_UPDATE_TRANGTHAI_CACHUP");
 
                 new OracleDataAdapter(cmd).Fill(ds);
 
