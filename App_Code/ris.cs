@@ -63,7 +63,7 @@ public class JsonWebService : System.Web.Services.WebService
     //B: DANG NHAP
     [WebMethod]
     //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string Dangnhap(string dvtt, string cmnd_nv, string pass_nv, string u_en, string p_en)
+    private string Dangnhap(string dvtt, string cmnd_nv, string pass_nv, string u_en, string p_en)
     {
         List<Donvi> dsdv = new List<Donvi>();
 
@@ -190,7 +190,7 @@ public class JsonWebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string dskhoa(string dvtt, string u_en, string p_en)
+    private string dskhoa(string dvtt, string u_en, string p_en)
     {
         List<dskhoa> dskhoa = new List<dskhoa>();
 
@@ -258,7 +258,7 @@ public class JsonWebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string dsbacsi(string dvtt, string u_en, string p_en)
+    private string dsbacsi(string dvtt, string u_en, string p_en)
     {
         List<dsbacsi> dsbacsi = new List<dsbacsi>();
 
@@ -328,7 +328,7 @@ public class JsonWebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string dscdha(string dvtt, string u_en, string p_en)
+    private string dscdha(string dvtt, string u_en, string p_en)
     {
         List<dscdha> dscdha = new List<dscdha>();
 
@@ -409,7 +409,7 @@ public class JsonWebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string dsbenhnhan(string dvtt, DateTime tungay, DateTime denngay, string u_en, string p_en)
+    private string dsbenhnhan(string dvtt, DateTime tungay, DateTime denngay, string u_en, string p_en)
     {
         List<dsbenhnhan> dsbenhnhan = new List<dsbenhnhan>();
 
@@ -491,7 +491,7 @@ public class JsonWebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string dsorder(string dvtt, string sophieu, string u_en, string p_en)
+    private string dsorder(string dvtt, string sophieu, string u_en, string p_en)
     {
         List<dsorder> dsorder = new List<dsorder>();
 
@@ -560,7 +560,7 @@ public class JsonWebService : System.Web.Services.WebService
 
     [WebMethod]
     //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string update_kb_cdha(string dvtt, string sophieu, string u_en, string p_en)
+    private string update_kb_cdha(string dvtt, string sophieu, string u_en, string p_en)
     {
         List<Cls_TT> result = new List<Cls_TT>();
 
@@ -611,7 +611,7 @@ public class JsonWebService : System.Web.Services.WebService
 
     [WebMethod]
     //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string update_kb_cdha_ct(string dvtt, string sophieu, string madv, string ketqua, string u_en, string p_en)
+    private string update_kb_cdha_ct(string dvtt, string sophieu, string madv, string ketqua, string u_en, string p_en)
     {
         List<Cls_TT> result = new List<Cls_TT>();
 
@@ -662,7 +662,7 @@ public class JsonWebService : System.Web.Services.WebService
 
     [WebMethod]
     //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string update_notru_cdha(string dvtt, string sophieu, string u_en, string p_en)
+    private string update_notru_cdha(string dvtt, string sophieu, string u_en, string p_en)
     {
         List<Cls_TT> result = new List<Cls_TT>();
 
@@ -713,7 +713,7 @@ public class JsonWebService : System.Web.Services.WebService
 
     [WebMethod]
     //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string update_noitru_cdha_ct(string dvtt, string sophieu, string madv, string ketqua, string u_en, string p_en)
+    private string update_noitru_cdha_ct(string dvtt, string sophieu, string madv, string ketqua, string u_en, string p_en)
     {
         List<Cls_TT> result = new List<Cls_TT>();
 
