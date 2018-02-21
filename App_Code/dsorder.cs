@@ -18,6 +18,7 @@ public class dsorder
 
     private string _SoPhieuYeuCau;
     private string _MaBenhNhan;
+    /*
     private string _TenBenhNhan;
     private string _NamSinh;
     private string _DiaChi;
@@ -27,10 +28,23 @@ public class dsorder
     private string _MaKhoaPhong;
     private string _MaChanDoan;
     private string _ChanDoan;
+    */
     private string _MaDichVu;
     private string _TenDichVu;
-    private string _NgayChiDinh;
+    //private string _NgayChiDinh;
+    private string _DaThucHien;
+    private string _DaThanhToan;
+    private string _tenloaicdha;
 
+    #endregion
+
+    #region TENLOAICDHA
+    [DataMemberAttribute]
+    public string TENLOAICDHA
+    {
+        get { return _tenloaicdha; }
+        set { _tenloaicdha = value; }
+    }
     #endregion
 
     #region SoPhieuYeuCau
@@ -50,7 +64,7 @@ public class dsorder
         set { _MaBenhNhan = value; }
     }
     #endregion
-
+    /*
     #region TenBenhNhan
     [DataMemberAttribute]
     public string TenBenhNhan
@@ -131,7 +145,7 @@ public class dsorder
         set { _ChanDoan = value; }
     }
     #endregion
-
+    */
     #region MaDichVu
     [DataMemberAttribute]
     public string MaDichVu
@@ -149,13 +163,31 @@ public class dsorder
         set { _TenDichVu = value; }
     }
     #endregion
-
+    /*
     #region NgayChiDinh
     [DataMemberAttribute]
     public string NgayChiDinh
     {
         get { return _NgayChiDinh; }
         set { _NgayChiDinh = value; }
+    }
+    #endregion
+    */
+    #region DaThucHien
+    [DataMemberAttribute]
+    public string DaThucHien
+    {
+        get { return _DaThucHien; }
+        set { _DaThucHien = value; }
+    }
+    #endregion
+
+    #region DaThanhToan
+    [DataMemberAttribute]
+    public string DaThanhToan
+    {
+        get { return _DaThanhToan; }
+        set { _DaThanhToan = value; }
     }
     #endregion
 }

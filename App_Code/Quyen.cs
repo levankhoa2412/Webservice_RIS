@@ -16,15 +16,55 @@ public class Quyen
 		//
 	}
     #region Attributes
-    private string c_Quyen;
+        private string _USERNAME;
+        private string _TENNHANVIEN;
+        private string _TENPHONGBAN;
+        private string _TENDONVI;
+        private string _QUYENADMIN;
     #endregion
 
-    #region c_Quyen
+    #region USERNAME
     [DataMemberAttribute]
-    public string cQuyen
+        public string USERNAME
+        {
+            get { return _USERNAME; }
+            set { _USERNAME = value; }
+        }
+    #endregion
+
+    #region TENNHANVIEN
+    [DataMemberAttribute]
+    public string TENNHANVIEN
     {
-        get { return c_Quyen; }
-        set { c_Quyen = value; }
+        get { return _TENNHANVIEN; }
+        set { _TENNHANVIEN = value; }
+    }
+    #endregion
+
+    #region TENPHONGBAN
+    [DataMemberAttribute]
+    public string TENPHONGBAN
+    {
+        get { return _TENPHONGBAN; }
+        set { _TENPHONGBAN = value; }
+    }
+    #endregion
+
+    #region TENDONVI
+    [DataMemberAttribute]
+    public string TENDONVI
+    {
+        get { return _TENDONVI; }
+        set { _TENDONVI = value; }
+    }
+    #endregion
+
+    #region QUYENADMIN
+    [DataMemberAttribute]
+    public string QUYENADMIN
+    {
+        get { return _QUYENADMIN; }
+        set { _QUYENADMIN = value; }
     }
     #endregion
 }

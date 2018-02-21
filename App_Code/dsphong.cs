@@ -21,7 +21,7 @@ public class dsphong
     private string _MA_PHONG_BENH;
     private string _TEN_PHONG_BENH;
     private string _MA_PHONG_BAN;
-    private string _KYNHIEUNHOM;
+    /*private string _KYNHIEUNHOM;
     private string _SO_DUOC_SET;
     private string _APDUNG_INDAM_SO;
     private string _TEN_PHIA_TRUOC;
@@ -31,7 +31,7 @@ public class dsphong
     private string _PHONG_TTPT_VLTL;
     private string _KYHIEU_PHONG_BAOCAO;
     private string _CANHBAO;
-
+    */
     #endregion
 
     #region MA_PHONG_BENH
@@ -60,7 +60,7 @@ public class dsphong
         set { _MA_PHONG_BAN = value; }
     }
     #endregion
-
+    /*
     #region KYNHIEUNHOM
     [DataMemberAttribute]
     public string KYNHIEUNHOM
@@ -150,5 +150,5 @@ public class dsphong
         set { _CANHBAO = value; }
     }
     #endregion
-
+    */
 }

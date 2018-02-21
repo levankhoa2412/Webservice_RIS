@@ -19,7 +19,7 @@ public class dscdha
     private string _ma_cdha;
     private string _ten_cdha;
     private string _gia_cdha;
-
+    private string _ten_loaicdha;
     #endregion
 
     #region MA_CDHA
@@ -48,4 +48,14 @@ public class dscdha
         set { _gia_cdha = value; }
     }
     #endregion
+
+    #region TEN_LOAI_CDHA
+    [DataMemberAttribute]
+    public string TEN_LOAI_CDHA
+    {
+        get { return _ten_loaicdha; }
+        set { _ten_loaicdha = value; }
+    }
+    #endregion
+
 }
